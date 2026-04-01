@@ -3,15 +3,6 @@
 #include <string.h>
 #include "fila_espera.h"
 
-/* ----------------------------------------------------------
- * JUSTIFICATIVA DA ESTRUTURA:
- *   Fila (FIFO) com lista simplesmente encadeada.
- *   O cliente cadastrado há mais tempo deve ser atendido
- *   primeiro — comportamento clássico de fila.
- *   Mantemos ponteiros para frente (dequeue) e para trás
- *   (enqueue) para que ambas as operações sejam O(1).
- * ---------------------------------------------------------- */
-
 void fila_espera_inicializar(FilaEspera *f)
 {
     f->frente  = NULL;
@@ -19,7 +10,6 @@ void fila_espera_inicializar(FilaEspera *f)
     f->tamanho = 0;
 }
 
-/* Enqueue: insere no final da fila. */
 void fila_espera_enqueue(FilaEspera *f,
                          const char *nome,
                          const char *telefone,
@@ -41,7 +31,6 @@ void fila_espera_enqueue(FilaEspera *f,
     novo->prox = NULL;
 
     if (f->tras == NULL) {
-        /* Fila vazia */
         f->frente = novo;
         f->tras   = novo;
     } else {
@@ -51,31 +40,24 @@ void fila_espera_enqueue(FilaEspera *f,
     f->tamanho++;
 }
 
-/* Dequeue: remove do início (mais antigo). */
 NoPotencial *fila_espera_dequeue(FilaEspera *f)
 {
     if (f->frente == NULL) return NULL;
 
     NoPotencial *removido = f->frente;
     f->frente = removido->prox;
-    if (f->frente == NULL) f->tras = NULL;  /* fila ficou vazia */
+    if (f->frente == NULL) f->tras = NULL;  
     removido->prox = NULL;
     f->tamanho--;
     return removido;
 }
 
-/* Remove nó específico (qualquer posição) — necessário para
- * finalizar atendimento quando o usuário navega até um cliente
- * que não é o primeiro da fila. */
 void fila_espera_remover_no(FilaEspera *f, NoPotencial *alvo)
 {
     if (f->frente == NULL || alvo == NULL) return;
 
-    /* Caso especial: é o primeiro nó */
     if (f->frente == alvo) {
         fila_espera_dequeue(f);
-        /* Nota: dequeue já ajusta ponteiros e decrementa tamanho,
-         * mas NÃO libera memória — responsabilidade do chamador. */
         return;
     }
 
@@ -91,7 +73,6 @@ void fila_espera_remover_no(FilaEspera *f, NoPotencial *alvo)
     }
 }
 
-/* Busca linear por nome (correspondência exata). */
 NoPotencial *fila_espera_buscar(FilaEspera *f, const char *nome)
 {
     NoPotencial *atual = f->frente;
@@ -112,7 +93,6 @@ int fila_espera_tamanho(const FilaEspera *f)
     return f->tamanho;
 }
 
-/* Libera todos os nós da fila. */
 void fila_espera_destruir(FilaEspera *f)
 {
     NoPotencial *atual = f->frente;
