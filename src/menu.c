@@ -12,12 +12,10 @@ static void exibir_cliente(const NoPotencial *c)
 {
     char buf[20];
     formatar_data(c->data_captacao, buf);
-    printf("\n  ┌─────────────────────────────────────┐\n");
-    printf("  │  Nome     : %-26s│\n", c->nome);
-    printf("  │  Telefone : %-26s│\n", c->telefone);
-    printf("  │  Email    : %-26s│\n", c->email);
-    printf("  │  Captacao : %-26s│\n", buf);
-    printf("  └─────────────────────────────────────┘\n");
+    printf(" Nome     : %-26s│\n", c->nome);
+    printf(" Telefone : %-26s│\n", c->telefone);
+    printf(" Email    : %-26s│\n", c->email);
+    printf(" Captacao : %-26s│\n", buf);
 }
 
 /* Coleta dados adicionais do comprador e move para FilaCompradores. */
@@ -87,14 +85,11 @@ int menu_principal(void)
     char buf[8];
 
     printf("\n");
-    printf("  ╔══════════════════════════════════╗\n");
-    printf("  ║   SISTEMA DE CAPTACAO DE CLIENTES ║\n");
-    printf("  ╠══════════════════════════════════╣\n");
-    printf("  ║  1. Cadastrar cliente             ║\n");
-    printf("  ║  2. Realizar contato              ║\n");
-    printf("  ║  3. Relatorios                    ║\n");
-    printf("  ║  4. Sair                          ║\n");
-    printf("  ╚══════════════════════════════════╝\n");
+    printf(" SISTEMA DE CAPTACAO DE CLIENTES \n");
+    printf(" 1. Cadastrar cliente \n");
+    printf(" 2. Realizar contato \n");
+    printf(" 3. Relatorios \n");
+    printf(" 4. Sair \n");
     printf("  Opcao: ");
     ler_string("", buf, sizeof(buf));
     opcao = atoi(buf);
