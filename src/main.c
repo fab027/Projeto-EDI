@@ -41,7 +41,7 @@ int main(void)
         }
     } while (opcao != 4);
 
-    /* Libera toda memória alocada dinamicamente */
+    /* Libera a memoria */
     fila_espera_destruir(&fila_espera);
     fila_compradores_destruir(&compradores);
     pilha_arquivados_destruir(&arquivados);
