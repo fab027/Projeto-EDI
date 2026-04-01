@@ -207,6 +207,4 @@ Wrapper em torno de `fgets()` que: imprime o prompt; lê até `tamanho-1` caract
 As funções verificam o retorno. Se for `NULL`, imprimem mensagem de erro em `stderr` e retornam sem modificar a estrutura. O programa continua executando sem crash nem segfault.
 </details>
 
-### Observações
 
-Para execução dessa atividade houve bastante pesquisa e ajuda externa, agradeço bastante pelo avanço da tecnologia.

@@ -8,10 +8,12 @@ static void exibir_cliente(const NoPotencial *c)
 {
     char buf[20];
     formatar_data(c->data_captacao, buf);
-    printf(" Nome     : %-26s│\n", c->nome);
-    printf(" Telefone : %-26s│\n", c->telefone);
-    printf(" Email    : %-26s│\n", c->email);
-    printf(" Captacao : %-26s│\n", buf);
+    printf("  +----------------------------------------------+\n");
+    printf("  | Nome     : %-33s|\n", c->nome);
+    printf("  | Telefone : %-33s|\n", c->telefone);
+    printf("  | Email    : %-33s|\n", c->email);
+    printf("  | Captacao : %-33s|\n", buf);
+    printf("  +----------------------------------------------+\n");
 }
 
 static void finalizar_compra(NoPotencial *cliente,
