@@ -42,12 +42,6 @@ Sistema que gerencia três grupos distintos de clientes utilizando estruturas de
 
 ## ⚙️ Compilação e Execução
 
-### Requisitos
-
-- GCC (suporte a C99)
-- Make
-- Linux, macOS ou Windows com MinGW/WSL
-
 ### Comandos
 
 ```bash
@@ -212,3 +206,7 @@ Wrapper em torno de `fgets()` que: imprime o prompt; lê até `tamanho-1` caract
 
 As funções verificam o retorno. Se for `NULL`, imprimem mensagem de erro em `stderr` e retornam sem modificar a estrutura. O programa continua executando sem crash nem segfault.
 </details>
+
+### Observações
+
+Para execução dessa atividade houve bastante pesquisa e ajuda externa, agradeço bastante pelo avanço da tecnologia.
