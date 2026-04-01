@@ -4,10 +4,6 @@
 #include <time.h>
 #include "utils.h"
 
-/* ----------------------------------------------------------
- * Leitura segura: lê até (tamanho-1) caracteres, descarta
- * o restante da linha e o '\n' final.
- * ---------------------------------------------------------- */
 void ler_string(const char *prompt, char *dest, int tamanho)
 {
     printf("%s", prompt);
@@ -16,7 +12,6 @@ void ler_string(const char *prompt, char *dest, int tamanho)
         if (len > 0 && dest[len - 1] == '\n') {
             dest[len - 1] = '\0';
         } else {
-            /* Descarta o restante da linha */
             int c;
             while ((c = getchar()) != '\n' && c != EOF)
                 ;
@@ -24,9 +19,6 @@ void ler_string(const char *prompt, char *dest, int tamanho)
     }
 }
 
-/* ----------------------------------------------------------
- * Leitura de data no formato dd/mm/aaaa com validação básica.
- * ---------------------------------------------------------- */
 Data ler_data(const char *prompt)
 {
     Data d = {0, 0, 0};
@@ -50,10 +42,6 @@ Data ler_data(const char *prompt)
     return d;
 }
 
-/* ----------------------------------------------------------
- * Converte Data para dias julianos (simplificado) para
- * calcular diferença em dias.
- * ---------------------------------------------------------- */
 static long data_para_dias(Data d)
 {
     int m = d.mes;
@@ -71,9 +59,6 @@ int diferenca_dias(Data data_ini, Data data_fim)
     return (int)(data_para_dias(data_fim) - data_para_dias(data_ini));
 }
 
-/* ----------------------------------------------------------
- * Data atual via biblioteca padrão.
- * ---------------------------------------------------------- */
 Data data_hoje(void)
 {
     time_t t = time(NULL);
@@ -85,17 +70,11 @@ Data data_hoje(void)
     return d;
 }
 
-/* ----------------------------------------------------------
- * Formata Data como string "dd/mm/aaaa".
- * ---------------------------------------------------------- */
 void formatar_data(Data d, char *buf)
 {
     sprintf(buf, "%02d/%02d/%04d", d.dia, d.mes, d.ano);
 }
 
-/* ----------------------------------------------------------
- * Limpa a tela de forma portável.
- * ---------------------------------------------------------- */
 void limpar_tela(void)
 {
 #ifdef _WIN32
@@ -105,9 +84,6 @@ void limpar_tela(void)
 #endif
 }
 
-/* ----------------------------------------------------------
- * Pausa a execução até Enter.
- * ---------------------------------------------------------- */
 void pausar(void)
 {
     printf("\n  Pressione Enter para continuar...");
