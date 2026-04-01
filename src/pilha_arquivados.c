@@ -3,22 +3,12 @@
 #include <string.h>
 #include "pilha_arquivados.h"
 
-/* ----------------------------------------------------------
- * JUSTIFICATIVA DA ESTRUTURA:
- *   Pilha (LIFO) com lista simplesmente encadeada.
- *   Clientes arquivados nao tem ordem de contato definida;
- *   o mais recentemente arquivado e o candidato mais natural
- *   para recontato rapido (interesse ainda "quente").
- *   Push e Pop sao O(1) sem necessidade de ponteiro de cauda.
- * ---------------------------------------------------------- */
-
 void pilha_arquivados_inicializar(PilhaArquivados *p)
 {
     p->topo    = NULL;
     p->tamanho = 0;
 }
 
-/* Push: insere no topo. */
 void pilha_arquivados_push(PilhaArquivados *p, const NoPotencial *base)
 {
     NoArquivado *novo = (NoArquivado *)malloc(sizeof(NoArquivado));
@@ -39,7 +29,6 @@ void pilha_arquivados_push(PilhaArquivados *p, const NoPotencial *base)
     p->tamanho++;
 }
 
-/* Pop: remove do topo. */
 NoArquivado *pilha_arquivados_pop(PilhaArquivados *p)
 {
     if (p->topo == NULL) return NULL;
