@@ -3,14 +3,6 @@
 #include <string.h>
 #include "fila_compradores.h"
 
-/* ----------------------------------------------------------
- * JUSTIFICATIVA DA ESTRUTURA:
- *   Fila (FIFO) com lista simplesmente encadeada.
- *   O enunciado exige que "cliente que compra primeiro tem
- *   seu pedido processado para envio primeiro" — isso é
- *   exatamente a semântica de uma fila.
- * ---------------------------------------------------------- */
-
 void fila_compradores_inicializar(FilaCompradores *f)
 {
     f->frente  = NULL;
@@ -29,7 +21,7 @@ void fila_compradores_enqueue(FilaCompradores *f,
         fprintf(stderr, "Erro: memoria insuficiente.\n");
         return;
     }
-    /* Copia dados herdados do potencial */
+    
     strncpy(novo->nome,     base->nome,     sizeof(novo->nome)     - 1);
     strncpy(novo->telefone, base->telefone, sizeof(novo->telefone) - 1);
     strncpy(novo->email,    base->email,    sizeof(novo->email)    - 1);
@@ -38,7 +30,6 @@ void fila_compradores_enqueue(FilaCompradores *f,
     novo->email[sizeof(novo->email)       - 1] = '\0';
     novo->data_captacao = base->data_captacao;
 
-    /* Dados adicionais do comprador */
     novo->data_nascimento = data_nasc;
     novo->endereco = *end;
     strncpy(novo->cpf, cpf, sizeof(novo->cpf) - 1);
