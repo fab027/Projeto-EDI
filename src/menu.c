@@ -4,10 +4,6 @@
 #include "menu.h"
 #include "utils.h"
 
-/* ============================================================
- * Funções auxiliares (estáticas — uso interno deste módulo)
- * ============================================================ */
-
 static void exibir_cliente(const NoPotencial *c)
 {
     char buf[20];
@@ -18,7 +14,6 @@ static void exibir_cliente(const NoPotencial *c)
     printf(" Captacao : %-26s│\n", buf);
 }
 
-/* Coleta dados adicionais do comprador e move para FilaCompradores. */
 static void finalizar_compra(NoPotencial *cliente,
                              FilaEspera *fila,
                              FilaCompradores *compradores)
@@ -45,7 +40,6 @@ static void finalizar_compra(NoPotencial *cliente,
     printf("\n  Cliente registrado como COMPRADOR. Pedido enfileirado para logistica.\n");
 }
 
-/* Finaliza atendimento: comprou / arquivar / excluir. */
 static void finalizar_atendimento(NoPotencial *cliente,
                                   FilaEspera *fila,
                                   FilaCompradores *compradores,
@@ -74,10 +68,6 @@ static void finalizar_atendimento(NoPotencial *cliente,
         printf("\n  Cliente EXCLUIDO definitivamente.\n");
     }
 }
-
-/* ============================================================
- * Funções públicas
- * ============================================================ */
 
 int menu_principal(void)
 {
@@ -126,7 +116,6 @@ void menu_realizar_contato(FilaEspera *fila,
         return;
     }
 
-    /* Começa pelo mais antigo (frente da fila) */
     NoPotencial *atual = fila_espera_peek(fila);
     char buf[8], nome_busca[80];
     int continuar = 1;
@@ -155,7 +144,6 @@ void menu_realizar_contato(FilaEspera *fila,
             break;
 
         case 2: {
-            /* Busca o nó anterior percorrendo desde a frente */
             if (atual == fila_espera_peek(fila)) {
                 printf("\n  Este e o primeiro cliente da lista.\n");
                 pausar();
@@ -196,7 +184,6 @@ void menu_realizar_contato(FilaEspera *fila,
             break;
         }
 
-        /* Se a fila ficou vazia após finalizar atendimento, sai */
         if (fila_espera_tamanho(fila) == 0) {
             continuar = 0;
         }
